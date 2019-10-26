@@ -14,10 +14,11 @@ powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githu
 rem If this is actually accepted in the pull request, change "aaronliu0130" to "hipeopeo" of course.
 for /f "tokens=* delims=" %%v in (version.txt) do set "version=%%v"
 if "%version%" NEQ "v1.11.21.LC5112682" (
-    echo An Update has been found. Updating...
+    echo An Update has been found. Will restart after update. Updating...
     powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/hipeopeo/s/master/update.bat', 'update.bat')
     if %errorlevel% == 0 (
     	update.bat
+	exit
     ) else (
     	echo Skipping due to error during updating, %errorlevel%
 	set uperr=1
