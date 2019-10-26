@@ -55,7 +55,7 @@ IF EXIST yuzu_installer.exe (
 	echo Removing old version...
 	del yuzu_installer.exe
 )
-powershell.exe (new-object System.Net.WebClient).DownloadFile('https://www.dropbox.com/s/4vdziiwebovju8x/yuzu_install.exe?dl=1', 'yuzu_install.exe')
+powershell.exe (new-object System.Net.WebClient).DownloadFile('https://github.com/yuzu-emu/liftinstall/releases/download/1.6/yuzu_install.exe', 'yuzu_install.exe')
 if %errorlevel% == 0 (
 	echo We will now install yuzu, then delete the installer.
 	yuzu_install.exe
