@@ -10,12 +10,12 @@ set saerr=0
 :update
 echo Checking for updates...
 del  /q version.txt >nul 2>&1
-powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/aaronliu0130/s/master/version', 'version.txt')
-rem If this is actually accepted in the pull request, change "aaronliu0130" to "hipeopeo" of course.
+powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/aaronliu0130/s/master/version.txt', 'version.txt')
+rem If this is actually accepted in the pull request, change "aaronliu0130" to "jackscobey" of course.
 for /f "tokens=* delims=" %%v in (version.txt) do set "version=%%v"
 if "%version%" NEQ "v1.11.21.LC5112682" (
     echo An Update has been found. Will restart after update. Updating...
-    powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/hipeopeo/s/master/update.bat', 'update.bat')
+    powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/jackscobey/s/master/update.bat', 'update.bat')
     if %errorlevel% == 0 (
     	update.bat
 	exit
@@ -87,8 +87,8 @@ IF EXIST keys\title.keys (
 mkdir keys
 cd keys
 echo Writing new keys to %appdata%\yuzu\keys
-powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/hipeopeo/s/master/prod.keys', 'prod.keys')
-powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/hipeopeo/s/master/title.keys', 'title.keys')
+powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/jackscobey/s/master/prod.keys', 'prod.keys')
+powershell.exe (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/jackscobey/s/master/title.keys', 'title.keys')
 if %errorlevel% == 0 (
 	echo Successfully downloaded title.keys, prod.keys
 ) else (
@@ -123,33 +123,6 @@ pause
 cls
 echo The script is now finished.
 echo.
-if not %errcount% == 0(
-	echo However...
-	echo Your installation was not complete.
-	echo.
-	echo Let's see...
-	echo Well...
-	echo You had...
-	if %uperr% == 1 echo ...an old version of this script, and failed during updating.
-	if %inserr% == 1 echo ...an error while installing yuzu itself.
-	if %keyerr% == 1 echo ...an error while writing the keys.
-	if %saerr% == 1 echo ...an error while writing the System Archives.
-	echo You had %errcount% errors in total.
-	goto %errcount%
-	:4
-	echo That's alot! You didn't accomplish anything! Try a VPN or connecting to WiFi.
-	goto switchend
-	:3
-	echo That's alot! At least this is the newest version...
-	goto switchend
-	:2
-	echo Well, at least you got yuzu itself installed...
-	goto switchend
-	:1
-	echo Hmmm... pretty tiny. Would've been better if you didn't have any!
-	:switchend
-	echo.
-)
 echo Thanks to /u/yuzu_pirate, /u/Azurime, and /u/bbb651 for their contributions to /r/YuzuP I R A C Y.
 echo.
 echo This program made by /u/Hipeopeo.
